@@ -1,4 +1,5 @@
-package com.example.srivatsan.lockscreen;
+package com.example.adarsh.lockscreen;
+
 
 import android.app.admin.DeviceAdminReceiver;
 import android.content.Context;

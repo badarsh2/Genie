@@ -1,4 +1,4 @@
-package com.example.srivatsan.lockscreen;
+package com.example.adarsh.lockscreen;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

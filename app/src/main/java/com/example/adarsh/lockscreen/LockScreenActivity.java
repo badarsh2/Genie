@@ -1,5 +1,4 @@
-package com.example.srivatsan.lockscreen;
-
+package com.example.adarsh.lockscreen;
 
 import android.app.ActivityManager;
 import android.app.admin.DevicePolicyManager;
@@ -18,12 +17,12 @@ public class LockScreenActivity extends ActionBarActivity {
     DevicePolicyManager deviceManger;
     ActivityManager activityManager;
     ComponentName compName;
-    RecieveSMS rs;
+    ReceiveSMS rs;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_lock_screen);
-        startService(new Intent(this,ServerLockService.class));
+        //startService(new Intent(this,ServerLockService.class));
         deviceManger = (DevicePolicyManager)getSystemService(
                 Context.DEVICE_POLICY_SERVICE);
         activityManager = (ActivityManager)getSystemService(
@@ -36,7 +35,7 @@ public class LockScreenActivity extends ActionBarActivity {
         intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,
                 "Additional text explaining why this needs to be added.");
         startActivityForResult(intent, 1);
-       // setContentView(R.layout.activity_lock_screen);
+        // setContentView(R.layout.activity_lock_screen);
     }
 
 
@@ -63,3 +62,5 @@ public class LockScreenActivity extends ActionBarActivity {
     }
 
 }
+
+

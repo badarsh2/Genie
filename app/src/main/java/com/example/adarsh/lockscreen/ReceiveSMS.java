@@ -1,4 +1,4 @@
-package com.example.srivatsan.lockscreen;
+package com.example.adarsh.lockscreen;
 
 import android.app.ActivityManager;
 import android.app.admin.DevicePolicyManager;
@@ -10,11 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
 
-/**
- * Created by srivatsan on 19/2/15.
- */
-
-public class RecieveSMS extends BroadcastReceiver
+public class ReceiveSMS extends BroadcastReceiver
 {
     DevicePolicyManager deviceManger;
     ActivityManager activityManager;

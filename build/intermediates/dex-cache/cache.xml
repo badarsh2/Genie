@@ -2,32 +2,60 @@
 <items version="2" >
 
     <item
-        jar="/home/srivatsan/Desktop/LockScreen/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/home/srivatsan/Desktop/LockScreen/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-565d4d48b416099a8f0279192186ac42d2f43aa7.jar" />
+        jar="/home/adarsh/Documents/Github/Android/LockScreen/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="25644e05d141ad8572f01d0b3894584d6287b3ad">
+        <dex dex="/home/adarsh/Documents/Github/Android/LockScreen/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_6a9eeda7fa04e731dac1205b016c7f6b503979f3/classes.dex" />
     </item>
     <item
-        jar="/home/srivatsan/Desktop/LockScreen/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="/home/srivatsan/Desktop/LockScreen/app/build/intermediates/pre-dexed/debug/classes-a62e4f022ced626fa5b448126645941cb5ad5074.jar" />
+        jar="/home/adarsh/Documents/Github/Android/LockScreen/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="beb06420c201362c8adcd91e68fe64e23738cedd">
+        <dex dex="/home/adarsh/Documents/Github/Android/LockScreen/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_b535d70baf7cad1f8b44c81777bf5c09b0e4049e/classes.dex" />
     </item>
     <item
-        jar="/home/srivatsan/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="/home/srivatsan/Desktop/LockScreen/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-deff61ba66a7708a8d70a43b036b3e61dd6bed43.jar" />
+        jar="/home/adarsh/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/24.1.0/support-annotations-24.1.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="8a23146e1a8c7cb4758e3d3f62449213f1e51f67">
+        <dex dex="/home/adarsh/Documents/Github/Android/LockScreen/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.1.0_0b7abc4ac1da594f408b26da872e712bb663928f/classes.dex" />
     </item>
     <item
-        jar="/home/srivatsan/Desktop/LockScreen/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/home/srivatsan/Desktop/LockScreen/app/build/intermediates/pre-dexed/debug/classes-5c2b98d8f723443324d2a26d72405e2d31717a6b.jar" />
+        jar="/home/adarsh/Documents/Github/Android/LockScreen/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.1.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="ba8e8860f7e033c3a503b682337a4bafdf56e6ee">
+        <dex dex="/home/adarsh/Documents/Github/Android/LockScreen/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.1.0_fa71b1b4d69e52af5187c3863fa3949f507f58c8/classes.dex" />
+    </item>
+    <item
+        jar="/home/adarsh/Documents/Github/Android/LockScreen/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.0/jars/libs/internal_impl-24.1.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="8c7087216946c546f85a1242a2794c0f271e092c">
+        <dex dex="/home/adarsh/Documents/Github/Android/LockScreen/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.1.0_668e36f549ff1a40b3676dc3ecd01d45a8bb0988/classes.dex" />
+    </item>
+    <item
+        jar="/home/adarsh/Documents/Github/Android/LockScreen/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.1.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="9340c4f95a4e3916c9ad70296e24576743743712">
+        <dex dex="/home/adarsh/Documents/Github/Android/LockScreen/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.1.0_3904b9e7489320f1670ac9a39ad8ce43c7ad4a45/classes.dex" />
+    </item>
+    <item
+        jar="/home/adarsh/Documents/Github/Android/LockScreen/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.1.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="8c854b30eca6c442fe842e66cd3b58c5dd08996f">
+        <dex dex="/home/adarsh/Documents/Github/Android/LockScreen/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.1.0_de7ba7f09d4034ac11202616d77eeaaeac5273a5/classes.dex" />
+    </item>
+    <item
+        jar="/home/adarsh/Documents/Github/Android/LockScreen/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="e096a5d8343cc9c5a9f6eded36bd0f4c82f8c83e">
+        <dex dex="/home/adarsh/Documents/Github/Android/LockScreen/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.1.0_4c7cb784f568437c5c165a3aa22c419b430b20f5/classes.dex" />
     </item>
 
 </items>

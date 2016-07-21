@@ -1,5 +1,4 @@
-package com.example.srivatsan.lockscreen;
-
+package com.example.adarsh.lockscreen;
 
 import android.app.ActivityManager;
 import android.app.admin.DevicePolicyManager;
@@ -8,8 +7,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 
 public class LockScreenActivity extends ActionBarActivity {
@@ -18,12 +21,15 @@ public class LockScreenActivity extends ActionBarActivity {
     DevicePolicyManager deviceManger;
     ActivityManager activityManager;
     ComponentName compName;
-    RecieveSMS rs;
+    ReceiveSMS rs;
+    Toolbar toolbar;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_lock_screen);
-        startService(new Intent(this,ServerLockService.class));
+        setContentView(R.layout.activity_lock_screen);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        //startService(new Intent(this,ServerLockService.class));
         deviceManger = (DevicePolicyManager)getSystemService(
                 Context.DEVICE_POLICY_SERVICE);
         activityManager = (ActivityManager)getSystemService(
@@ -36,7 +42,16 @@ public class LockScreenActivity extends ActionBarActivity {
         intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,
                 "Additional text explaining why this needs to be added.");
         startActivityForResult(intent, 1);
-       // setContentView(R.layout.activity_lock_screen);
+        Toast.makeText(getApplicationContext(), "Wee", Toast.LENGTH_LONG).show();
+        // setContentView(R.layout.activity_lock_screen);
+
+        String[] names = new String[] { "1", "2", "3", "4"};
+        ListView listView = (ListView) findViewById(R.id.list1);
+        listView.setAdapter(new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_single_choice,
+                android.R.id.text1, names));
+        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
     }
 
 
@@ -55,11 +70,13 @@ public class LockScreenActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
 
 }
+
+

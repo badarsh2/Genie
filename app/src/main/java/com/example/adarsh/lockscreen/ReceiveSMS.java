@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
+import android.util.Log;
+import android.widget.Toast;
 
 public class ReceiveSMS extends BroadcastReceiver
 {
@@ -26,7 +28,7 @@ public class ReceiveSMS extends BroadcastReceiver
 
         Bundle bundle = intent.getExtras();
         SmsMessage[] recievedMsgs = null;
-        String str = "";
+        String incoming = "", condition = "";
         if (bundle != null)
         {
 
@@ -34,14 +36,17 @@ public class ReceiveSMS extends BroadcastReceiver
             recievedMsgs = new SmsMessage[pdus.length];
             for (int i=0; i<pdus.length;i++){
                 recievedMsgs[i] = SmsMessage.createFromPdu((byte[])pdus[i]);
-                str +=recievedMsgs[i].getMessageBody().toString();
+                incoming = recievedMsgs[i].getMessageBody().toString();
+                Log.d("hhhh", incoming);
             }
             String pass="",password="";
-            if(str.length()>7) {
+
+            if(incoming.length() == 8) {
                 SharedPreferences prefs = context.getSharedPreferences("PASS", 0);
                 String prev = prefs.getString("password", "");
-                String first=Character.toString(str.charAt(0))+ Character.toString(str.charAt(1)) + Character.toString(str.charAt(2)) + Character.toString(str.charAt(3)) ;
-                String second=Character.toString(str.charAt(4))+ Character.toString(str.charAt(5)) + Character.toString(str.charAt(6)) + Character.toString(str.charAt(7)) ;
+
+                String first=Character.toString(incoming.charAt(0))+ Character.toString(incoming.charAt(1)) + Character.toString(incoming.charAt(2)) + Character.toString(incoming.charAt(3)) ;
+                String second=Character.toString(incoming.charAt(4))+ Character.toString(incoming.charAt(5)) + Character.toString(incoming.charAt(6)) + Character.toString(incoming.charAt(7)) ;
                 if(prev.equals("") || first.equals(prev)){
                     int xor=Integer.parseInt(first)^Integer.parseInt(second);
                     password=xor+"";

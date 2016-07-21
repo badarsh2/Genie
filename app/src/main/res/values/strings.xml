@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">LockScreen</string>
+    <string name="app_name">Lock Screen</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="description">To protect your phone remotely, SMS an eight digit number to your phone from another device. The first four numbers should be from your existing 4-digit password, and the last four digits should form the encryption for your new password.</string>
 
 </resources>

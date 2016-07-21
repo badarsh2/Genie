@@ -5,14 +5,14 @@
         jar="/home/adarsh/Documents/Github/Android/LockScreen/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         revision="24.0.1"
-        sha1="2fa4c32f0eca83e2aea66077fe643a683b71c93a">
+        sha1="25644e05d141ad8572f01d0b3894584d6287b3ad">
         <dex dex="/home/adarsh/Documents/Github/Android/LockScreen/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_6a9eeda7fa04e731dac1205b016c7f6b503979f3/classes.dex" />
     </item>
     <item
         jar="/home/adarsh/Documents/Github/Android/LockScreen/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         revision="24.0.1"
-        sha1="6ea52bc0af09283ae3e31ff8c50aaa1714c7f8bb">
+        sha1="beb06420c201362c8adcd91e68fe64e23738cedd">
         <dex dex="/home/adarsh/Documents/Github/Android/LockScreen/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_b535d70baf7cad1f8b44c81777bf5c09b0e4049e/classes.dex" />
     </item>
     <item

@@ -1,17 +1,22 @@
 package com.example.adarsh.lockscreen;
 
 import android.app.ActivityManager;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RemoteViews;
 import android.widget.Toast;
 
 
@@ -52,6 +57,22 @@ public class LockScreenActivity extends ActionBarActivity {
                 android.R.id.text1, names));
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
+        notif_display();
+
+    }
+
+    private void notif_display() {
+        int icon = R.mipmap.ic_launcher;
+        long when = System.currentTimeMillis();
+        NotificationManager mNotificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.custom_notification);
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+                .setSmallIcon(icon)
+                .setContent(contentView)
+                .setContentTitle("Custom Notification")
+                .setWhen(when);
+        notificationBuilder.setCustomBigContentView(contentView);
+        mNotificationManager.notify(1, notificationBuilder.build());
     }
 
 

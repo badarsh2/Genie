@@ -17,6 +17,38 @@ public class ReceiveSMS extends BroadcastReceiver
     DevicePolicyManager deviceManger;
     ActivityManager activityManager;
     ComponentName compName;
+
+    public static Integer tryParse(String text) {
+        try {
+            return Integer.parseInt(text);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
+    public void savePassword(Context context, String password) {
+        Log.d("hhh", password);
+        SharedPreferences.Editor editor = context.getSharedPreferences("PASS", 0).edit();
+        editor.putString("password", password);
+        editor.commit();
+        deviceManger.setPasswordQuality(
+                compName, DevicePolicyManager.PASSWORD_QUALITY_UNSPECIFIED);
+        deviceManger.setPasswordMinimumLength(compName, 4);
+        deviceManger.resetPassword(password,
+                DevicePolicyManager.RESET_PASSWORD_REQUIRE_ENTRY);
+    }
+
+    public void lockDevice() {
+        boolean active = deviceManger.isAdminActive(compName);
+        if (active) {
+            deviceManger.lockNow();
+        }
+    }
+
+    private int generateRandomInt(int min, int max) {
+        return min + (int)(Math.random() * (max - min));
+    }
+
     @Override
     public void onReceive(Context context, Intent intent)
     {
@@ -28,7 +60,7 @@ public class ReceiveSMS extends BroadcastReceiver
 
         Bundle bundle = intent.getExtras();
         SmsMessage[] recievedMsgs = null;
-        String incoming = "", condition = "";
+        String incoming = "";
         if (bundle != null)
         {
 
@@ -36,38 +68,30 @@ public class ReceiveSMS extends BroadcastReceiver
             recievedMsgs = new SmsMessage[pdus.length];
             for (int i=0; i<pdus.length;i++){
                 recievedMsgs[i] = SmsMessage.createFromPdu((byte[])pdus[i]);
-                incoming = recievedMsgs[i].getMessageBody().toString();
+                incoming = recievedMsgs[i].getMessageBody();
                 Log.d("hhhh", incoming);
             }
-            String pass="",password="";
 
-            if(incoming.length() == 8) {
+            if(incoming.length() != 0) {
                 SharedPreferences prefs = context.getSharedPreferences("PASS", 0);
-                String prev = prefs.getString("password", "");
-
-                String first=Character.toString(incoming.charAt(0))+ Character.toString(incoming.charAt(1)) + Character.toString(incoming.charAt(2)) + Character.toString(incoming.charAt(3)) ;
-                String second=Character.toString(incoming.charAt(4))+ Character.toString(incoming.charAt(5)) + Character.toString(incoming.charAt(6)) + Character.toString(incoming.charAt(7)) ;
-                if(prev.equals("") || first.equals(prev)){
-                    int xor=Integer.parseInt(first)^Integer.parseInt(second);
-                    password=xor+"";
-                    switch (password.length()){
-                        case 0:password="0"+password;
-                        case 1:password="0"+password;
-                        case 2:password="0"+password;
-                        case 3:password="0"+password;
+                String prev = prefs.getString("password", "0000");
+                if(incoming.equals(prev)){
+                    if(tryParse(incoming) != null){
+                        int val = tryParse(incoming), max = (int)Math.pow(10, incoming.length()), min = (int)Math.pow(10, incoming.length() - 1);
+                        int random_num = generateRandomInt(min, max);
+                        if(random_num >= val){
+                            random_num += 1;
+                        }
+                        savePassword(context, random_num + "");
+                        lockDevice();
                     }
-                    SharedPreferences.Editor editor = context.getSharedPreferences("PASS", 0).edit();
-                    editor.putString("password", password);
-                    editor.commit();
-                    deviceManger.setPasswordQuality(
-                            compName, DevicePolicyManager.PASSWORD_QUALITY_UNSPECIFIED);
-                    deviceManger.setPasswordMinimumLength(compName, 4);
-                    deviceManger.resetPassword(password,
-                            DevicePolicyManager.RESET_PASSWORD_REQUIRE_ENTRY);
-
-                    boolean active = deviceManger.isAdminActive(compName);
-                    if (active) {
-                        deviceManger.lockNow();
+                    else {
+                        char[] message = incoming.toCharArray();
+                        for(int i = 0; i < incoming.length(); i++) {
+                            message[i] = (char)((message[i]+generateRandomInt(0, 27))%128);
+                        }
+                        savePassword(context, new String(message));
+                        lockDevice();
                     }
                 }
             }

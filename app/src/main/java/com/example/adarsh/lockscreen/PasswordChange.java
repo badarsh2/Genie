@@ -61,6 +61,19 @@ public class PasswordChange extends AppCompatActivity {
             }
         });
 
+        Intent i = getIntent();
+        if(i.getIntExtra("passchange", 0) == 1) {
+            new AlertDialog.Builder(PasswordChange.this)
+                    .setTitle("Password changed")
+                    .setMessage("A manual password PIN has been detected. Please change the password in the settings also.")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                        }
+                    })
+                    .show();
+        }
+
     }
 
     @Override

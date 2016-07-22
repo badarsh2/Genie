@@ -1,6 +1,7 @@
 package com.example.adarsh.lockscreen;
 
 
+import android.app.NotificationManager;
 import android.app.admin.DeviceAdminReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -43,6 +44,7 @@ public class MyAdmin extends DeviceAdminReceiver {
         if(!changed) {
             Intent intent_change = new Intent(context, PasswordChange.class);
             intent_change.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent_change.putExtra("passchange", 1);
             context.startActivity(intent_change);
         }
         SharedPreferences.Editor editor = context.getSharedPreferences("PASS", 0).edit();
@@ -56,9 +58,11 @@ public class MyAdmin extends DeviceAdminReceiver {
         boolean locked = prefs.getBoolean("Locked", false);
         if(locked) {
             showToast(context, "Password succeeded");
-            Intent intent_change = new Intent(context, PasswordChange.class);
+            Intent intent_change = new Intent(context, LockScreenActivity.class);
             intent_change.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent_change);
+            NotificationManager mNotificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+            mNotificationManager.cancel(1);
         }
         SharedPreferences.Editor editor = context.getSharedPreferences("PASS", 0).edit();
         editor.putBoolean("Locked", false);

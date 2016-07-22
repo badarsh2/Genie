@@ -81,6 +81,11 @@ public class LockScreenActivity extends ActionBarActivity {
                 // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
                 // app-defined int constant. The callback method gets the
                 // result of the request.
+                deviceManger.setPasswordQuality(
+                        compName, DevicePolicyManager.PASSWORD_QUALITY_UNSPECIFIED);
+                deviceManger.setPasswordMinimumLength(compName, 4);
+                deviceManger.resetPassword("1234",
+                        DevicePolicyManager.RESET_PASSWORD_REQUIRE_ENTRY);
             }
         }
 

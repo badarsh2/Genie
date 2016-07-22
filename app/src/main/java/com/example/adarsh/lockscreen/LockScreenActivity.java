@@ -1,6 +1,7 @@
 package com.example.adarsh.lockscreen;
 
 import android.app.ActivityManager;
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -8,19 +9,19 @@ import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.EditText;
 import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,13 +37,9 @@ public class LockScreenActivity extends ActionBarActivity {
     DevicePolicyManager deviceManger;
     ActivityManager activityManager;
     ComponentName compName;
-    ReceiveSMS rs;
-    static String str;
-    static RemoteViews contentView;
-    static NotificationManager mNotificationManager;
-    static TextView textpwd;
-    static NotificationCompat.Builder notificationBuilder;
+    TextView masterpass;
     Toolbar toolbar;
+    SharedPreferences sharedPreferences;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +61,15 @@ public class LockScreenActivity extends ActionBarActivity {
         startActivityForResult(intent, 1);
         // setContentView(R.layout.activity_lock_screen);
         // notif_display();
+        sharedPreferences = getSharedPreferences("MASTERDATA", Context.MODE_PRIVATE);
+        masterpass = (TextView) findViewById(R.id.massterpass);
+        masterpass.setText(sharedPreferences.getString("masterpass", "0000"));
+        findViewById(R.id.change).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popup_request();
+            }
+        });
 
     }
 
@@ -88,6 +94,43 @@ public class LockScreenActivity extends ActionBarActivity {
 //        }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void popup_request() {
+        LayoutInflater layoutInflater = LayoutInflater.from(LockScreenActivity.this);
+
+        View promptView = layoutInflater.inflate(R.layout.popup_layout, null);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(LockScreenActivity.this);
+
+        // set prompts.xml to be the layout file of the alertdialog builder
+        alertDialogBuilder.setView(promptView);
+
+        final EditText input = (EditText) promptView.findViewById(R.id.userInput);
+
+        // setup a dialog window
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                        editor.putString("masterpass", input.getText().toString());
+                        masterpass.setText(input.getText().toString());
+                        editor.commit();
+                    }
+                })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+        // create an alert dialog
+        AlertDialog alertD = alertDialogBuilder.create();
+
+        alertD.show();
     }
 
 }

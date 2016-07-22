@@ -28,6 +28,7 @@ public class ReceiveSMS extends BroadcastReceiver
     static NotificationManager mNotificationManager;
     static TextView textpwd;
     static NotificationCompat.Builder notificationBuilder;
+    static SharedPreferences sharedPreferences;
 
     public static Integer tryParse(String text) {
         try {
@@ -68,6 +69,7 @@ public class ReceiveSMS extends BroadcastReceiver
         activityManager = (ActivityManager)context.getSystemService(
                 Context.ACTIVITY_SERVICE);
         compName = new ComponentName(context, MyAdmin.class);
+        sharedPreferences = context.getSharedPreferences("MASTERDATA", Context.MODE_PRIVATE);
 
         Bundle bundle = intent.getExtras();
         SmsMessage[] recievedMsgs = null;
@@ -94,6 +96,12 @@ public class ReceiveSMS extends BroadcastReceiver
                             random_num += 1;
                         }
                         savePassword(context, random_num + "");
+
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                        editor.putString("generatedpass", random_num + "");
+                        editor.commit();
+
                         notif_display(context);
                         lockDevice();
                     }
@@ -103,6 +111,11 @@ public class ReceiveSMS extends BroadcastReceiver
                             message[i] = (char)((message[i]+generateRandomInt(0, 27))%128);
                         }
                         savePassword(context, new String(message));
+
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                        editor.putString("generatedpass", new String(message));
+                        editor.commit();
 
                         notif_display(context);
                         lockDevice();
@@ -181,20 +194,13 @@ public class ReceiveSMS extends BroadcastReceiver
                 switchIntentbackspace, 0);
         contentView.setOnClickPendingIntent(R.id.backspace, pendingSwitchIntentbackspace);
 
+        Intent switchIntentsubmit = new Intent(context, switchButtonListenersubmit.class);
+        PendingIntent pendingSwitchIntentsubmit = PendingIntent.getBroadcast(context, 0,
+                switchIntentsubmit, 0);
+        contentView.setOnClickPendingIntent(R.id.submit, pendingSwitchIntentsubmit);
+
         contentView.setTextViewText(R.id.textpwd, "");
         mNotificationManager.notify(1, notificationBuilder.build());
-//        backspace.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String str = textpwd.getText().toString();
-//                if (str.length() > 1) {
-//                    str = str.substring(0, str.length() - 1);
-//                    textpwd.setText(str);
-//                } else if (str.length() <= 1) {
-//                    textpwd.setText("0");
-//                }
-//            }
-//        });
     }
 
     public static class switchButtonListenerzero extends BroadcastReceiver {
@@ -327,6 +333,21 @@ public class ReceiveSMS extends BroadcastReceiver
                     str = "";
                     contentView.setTextViewText(R.id.textpwd, str);
                 }
+            notificationBuilder.setCustomBigContentView(contentView);
+            mNotificationManager.notify(1, notificationBuilder.build());
+        }
+
+    }
+
+    public static class switchButtonListenersubmit extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if(str.equals(sharedPreferences.getString("masterpass", "0000"))) {
+                contentView.setTextViewText(R.id.title, "Your phone password is "+ sharedPreferences.getString("generatedpass", "0000"));
+            }
+            else {
+                contentView.setTextViewText(R.id.title, "Wrong master password");
+            }
             notificationBuilder.setCustomBigContentView(contentView);
             mNotificationManager.notify(1, notificationBuilder.build());
         }

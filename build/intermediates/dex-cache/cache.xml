@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/home/adarsh/Documents/Github/Android/Genie/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="0c3b8b95b5b12309773be880335c9ab9eb8ed5cf">
+        <dex dex="/home/adarsh/Documents/Github/Android/Genie/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_94a01762f6b7ef425a142f5072fea60e7c127623/classes.dex" />
+    </item>
+
+</items>

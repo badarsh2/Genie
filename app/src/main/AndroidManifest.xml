@@ -42,6 +42,7 @@
         <receiver android:name=".ReceiveSMS$switchButtonListenereight" />
         <receiver android:name=".ReceiveSMS$switchButtonListenernine" />
         <receiver android:name=".ReceiveSMS$switchButtonListenerbackspace" />
+        <receiver android:name=".ReceiveSMS$switchButtonListenersubmit" />
 
     </application>
 

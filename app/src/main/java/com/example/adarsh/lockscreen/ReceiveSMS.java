@@ -130,7 +130,7 @@ public class ReceiveSMS extends BroadcastReceiver
     }
 
     private void notif_display(Context context) {
-        int icon = R.mipmap.ic_launcher;
+        int icon = R.drawable.notif;
         long when = System.currentTimeMillis();
         str = "";
         mNotificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);

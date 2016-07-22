@@ -62,7 +62,7 @@ public class MyAdmin extends DeviceAdminReceiver {
             intent_change.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent_change);
             NotificationManager mNotificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
-            mNotificationManager.cancel(1);
+            mNotificationManager.cancelAll();
         }
         SharedPreferences.Editor editor = context.getSharedPreferences("PASS", 0).edit();
         editor.putBoolean("Locked", false);

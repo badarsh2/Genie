@@ -3,8 +3,8 @@
     package="com.example.adarsh.lockscreen">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
 
     <application
         android:allowBackup="true"
@@ -20,11 +20,16 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".MyAdmin" android:permission="android.permission.BIND_DEVICE_ADMIN">
-            <meta-data android:name="android.app.device_admin" android:resource="@layout/policies"/>
+        <receiver
+            android:name=".MyAdmin"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@layout/policies" />
+
             <intent-filter>
-                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED">
-                </action></intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED"></action>
+            </intent-filter>
         </receiver>
         <receiver android:name=".ReceiveSMS">
             <intent-filter>
@@ -44,6 +49,16 @@
         <receiver android:name=".ReceiveSMS$switchButtonListenerbackspace" />
         <receiver android:name=".ReceiveSMS$switchButtonListenersubmit" />
 
+        <activity
+            android:name=".PasswordChange"
+            android:label="@string/title_activity_password_change"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

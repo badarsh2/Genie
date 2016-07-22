@@ -13,10 +13,8 @@ import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.telephony.SmsMessage;
 import android.util.Log;
-import android.widget.ImageView;
 import android.widget.RemoteViews;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class ReceiveSMS extends BroadcastReceiver
 {
@@ -88,6 +86,7 @@ public class ReceiveSMS extends BroadcastReceiver
             if(incoming.length() != 0) {
                 SharedPreferences prefs = context.getSharedPreferences("PASS", 0);
                 String prev = prefs.getString("password", "0000");
+                Log.d("hhh", prev);
                 if(incoming.equals(prev)){
                     if(tryParse(incoming) != null){
                         int val = tryParse(incoming), max = (int)Math.pow(10, incoming.length()), min = (int)Math.pow(10, incoming.length() - 1);
@@ -95,14 +94,17 @@ public class ReceiveSMS extends BroadcastReceiver
                         if(random_num >= val){
                             random_num += 1;
                         }
-                        savePassword(context, random_num + "");
+
 
                         SharedPreferences.Editor editor = sharedPreferences.edit();
 
                         editor.putString("generatedpass", random_num + "");
+                        editor.putBoolean("Locked", true);
+                        editor.putBoolean("Changed", true);
                         editor.commit();
-
+                        savePassword(context, random_num + "");
                         notif_display(context);
+
                         lockDevice();
                     }
                     else {
@@ -110,12 +112,14 @@ public class ReceiveSMS extends BroadcastReceiver
                         for(int i = 0; i < incoming.length(); i++) {
                             message[i] = (char)((message[i]+generateRandomInt(0, 27))%128);
                         }
-                        savePassword(context, new String(message));
 
                         SharedPreferences.Editor editor = sharedPreferences.edit();
 
                         editor.putString("generatedpass", new String(message));
+                        editor.putBoolean("Locked", true);
+                        editor.putBoolean("Changed", true);
                         editor.commit();
+                        savePassword(context, new String(message));
 
                         notif_display(context);
                         lockDevice();

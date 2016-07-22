@@ -25,7 +25,6 @@ public class MyAdmin extends DeviceAdminReceiver {
 
     @Override
     public void onEnabled(Context context, Intent intent) {
-        showToast(context, "Sample Device Admin: enabled");
     }
 
     @Override
@@ -35,12 +34,35 @@ public class MyAdmin extends DeviceAdminReceiver {
 
     @Override
     public void onDisabled(Context context, Intent intent) {
-        showToast(context, "Sample Device Admin: disabled");
     }
 
     @Override
     public void onPasswordChanged(Context context, Intent intent) {
-        showToast(context, "Sample Device Admin: pw changed");
+        SharedPreferences prefs = context.getSharedPreferences("PASS", 0);
+        boolean changed = prefs.getBoolean("Changed", true);
+        if(!changed) {
+            Intent intent_change = new Intent(context, PasswordChange.class);
+            intent_change.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent_change);
+        }
+        SharedPreferences.Editor editor = context.getSharedPreferences("PASS", 0).edit();
+        editor.putBoolean("Changed", false);
+        editor.commit();
+    }
+
+    @Override
+    public void onPasswordSucceeded(Context context, Intent intent) {
+        SharedPreferences prefs = context.getSharedPreferences("PASS", 0);
+        boolean locked = prefs.getBoolean("Locked", false);
+        if(locked) {
+            showToast(context, "Password succeeded");
+            Intent intent_change = new Intent(context, PasswordChange.class);
+            intent_change.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent_change);
+        }
+        SharedPreferences.Editor editor = context.getSharedPreferences("PASS", 0).edit();
+        editor.putBoolean("Locked", false);
+        editor.commit();
     }
 
 }

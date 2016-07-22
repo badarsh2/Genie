@@ -5,6 +5,7 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.admin.DevicePolicyManager;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -12,12 +13,21 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RemoteViews;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class LockScreenActivity extends ActionBarActivity {
@@ -27,6 +37,11 @@ public class LockScreenActivity extends ActionBarActivity {
     ActivityManager activityManager;
     ComponentName compName;
     ReceiveSMS rs;
+    static String str;
+    static RemoteViews contentView;
+    static NotificationManager mNotificationManager;
+    static TextView textpwd;
+    static NotificationCompat.Builder notificationBuilder;
     Toolbar toolbar;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,32 +62,9 @@ public class LockScreenActivity extends ActionBarActivity {
         intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,
                 "Additional text explaining why this needs to be added.");
         startActivityForResult(intent, 1);
-        Toast.makeText(getApplicationContext(), "Wee", Toast.LENGTH_LONG).show();
         // setContentView(R.layout.activity_lock_screen);
+        // notif_display();
 
-        String[] names = new String[] { "1", "2", "3", "4"};
-        ListView listView = (ListView) findViewById(R.id.list1);
-        listView.setAdapter(new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_single_choice,
-                android.R.id.text1, names));
-        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-
-        notif_display();
-
-    }
-
-    private void notif_display() {
-        int icon = R.mipmap.ic_launcher;
-        long when = System.currentTimeMillis();
-        NotificationManager mNotificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-        RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.custom_notification);
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(icon)
-                .setContent(contentView)
-                .setContentTitle("Custom Notification")
-                .setWhen(when);
-        notificationBuilder.setCustomBigContentView(contentView);
-        mNotificationManager.notify(1, notificationBuilder.build());
     }
 
 

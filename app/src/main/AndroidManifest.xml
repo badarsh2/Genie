@@ -31,6 +31,18 @@
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
+        <receiver android:name=".ReceiveSMS$switchButtonListenerzero" />
+        <receiver android:name=".ReceiveSMS$switchButtonListenerone" />
+        <receiver android:name=".ReceiveSMS$switchButtonListenertwo" />
+        <receiver android:name=".ReceiveSMS$switchButtonListenerthree" />
+        <receiver android:name=".ReceiveSMS$switchButtonListenerfour" />
+        <receiver android:name=".ReceiveSMS$switchButtonListenerfive" />
+        <receiver android:name=".ReceiveSMS$switchButtonListenersix" />
+        <receiver android:name=".ReceiveSMS$switchButtonListenerseven" />
+        <receiver android:name=".ReceiveSMS$switchButtonListenereight" />
+        <receiver android:name=".ReceiveSMS$switchButtonListenernine" />
+        <receiver android:name=".ReceiveSMS$switchButtonListenerbackspace" />
+
     </application>
 
 </manifest>

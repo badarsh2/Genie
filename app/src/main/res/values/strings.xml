@@ -4,6 +4,6 @@
     <string name="app_name">Lock Screen</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="description">To protect your phone remotely, SMS an eight digit number to your phone from another device. The first four numbers should be from your existing 4-digit password, and the last four digits should form the encryption for your new password.</string>
+    <string name="description">To protect your phone remotely, SMS the old password PIN to your phone from another device. If you use the app afresh, SMS 0000 to your phone.</string>
 
 </resources>

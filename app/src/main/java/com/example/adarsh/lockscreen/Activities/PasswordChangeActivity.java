@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.adarsh.lockscreen.Utilities.MyAdmin;
 import com.example.adarsh.lockscreen.R;
@@ -89,22 +90,27 @@ public class PasswordChangeActivity extends AppCompatActivity {
                 .setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        if(input.getText().toString().equals("") || input.getText().toString().isEmpty() || input.getText().toString() == null) {
+                            Toast.makeText(getApplicationContext(), "Password cant be empty", Toast.LENGTH_LONG).show();
+                        }
 
-                        SharedPreferences.Editor editor = getSharedPreferences("PASS", 0).edit();
-                        editor.putString("password", input.getText().toString());
-                        editor.putBoolean("Changed", true);
-                        editor.commit();
+                        else {
+                            SharedPreferences.Editor editor = getSharedPreferences("PASS", 0).edit();
+                            editor.putString("password", input.getText().toString());
+                            editor.putBoolean("Changed", true);
+                            editor.commit();
 
-                        editor = sharedPreferences.edit();
-                        editor.putString("generatedpass", input.getText().toString());
-                        devicepass.setText(input.getText().toString());
-                        editor.commit();
+                            editor = sharedPreferences.edit();
+                            editor.putString("generatedpass", input.getText().toString());
+                            devicepass.setText(input.getText().toString());
+                            editor.commit();
 
-                        deviceManger.setPasswordQuality(
-                                compName, DevicePolicyManager.PASSWORD_QUALITY_UNSPECIFIED);
-                        deviceManger.setPasswordMinimumLength(compName, 4);
-                        deviceManger.resetPassword(input.getText().toString(),
-                                DevicePolicyManager.RESET_PASSWORD_REQUIRE_ENTRY);
+                            deviceManger.setPasswordQuality(
+                                    compName, DevicePolicyManager.PASSWORD_QUALITY_UNSPECIFIED);
+                            deviceManger.setPasswordMinimumLength(compName, 4);
+                            deviceManger.resetPassword(input.getText().toString(),
+                                    DevicePolicyManager.RESET_PASSWORD_REQUIRE_ENTRY);
+                        }
                     }
                 })
                 .setNegativeButton("Cancel",
@@ -137,11 +143,16 @@ public class PasswordChangeActivity extends AppCompatActivity {
                 .setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        if(input.getText().toString().equals("") || input.getText().toString().isEmpty() || input.getText().toString() == null) {
+                            Toast.makeText(getApplicationContext(), "Password cant be empty", Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                        editor.putString("masterpass", input.getText().toString());
-                        masterpass.setText(input.getText().toString());
-                        editor.commit();
+                            editor.putString("masterpass", input.getText().toString());
+                            masterpass.setText(input.getText().toString());
+                            editor.commit();
+                        }
                     }
                 })
                 .setNegativeButton("Cancel",

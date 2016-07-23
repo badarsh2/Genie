@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -90,6 +91,7 @@ public class LockScreenActivity extends ActionBarActivity {
 
         sharedPreferences = getSharedPreferences("MASTERDATA", Context.MODE_PRIVATE);
         masterpass = (TextView) findViewById(R.id.massterpass);
+        masterpass.getBackground().setColorFilter(Color.parseColor("#EEEEEE"), PorterDuff.Mode.SRC_IN);
         findViewById(R.id.enterpwdpage).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

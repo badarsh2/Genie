@@ -34,11 +34,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
+                android:background="#EEEEEE"
                 android:text="@string/description"
                 android:fontFamily="sans-serif-condensed"
                 android:textSize="18sp"
                 android:id="@+id/textView"
-                android:textColor="#FFFFFF" />
+                android:textColor="@color/colorPrimary"
+                android:padding="10dp"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -46,14 +48,14 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#EEEEEE">
+                android:background="@color/colorPrimaryDark">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="CHANGE PASSWORDS"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:id="@+id/textView5"
@@ -67,12 +69,9 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="5dp"
                     android:text="Enter Master Password (Default: 0000)"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="#FFFFFF"
                     android:fontFamily="sans-serif-condensed"
-                    android:id="@+id/textView2"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:id="@+id/textView2"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -80,7 +79,7 @@
                     <EditText
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="#EEEEEE"
                         android:inputType="number"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -92,8 +91,7 @@
                         android:id="@+id/enterpwdpage"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:background="@color/colorPrimary"
-                        android:textColor="#EEEEEE"
+                        android:textColor="@color/colorPrimary"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"/>
                 </LinearLayout>

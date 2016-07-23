@@ -10,6 +10,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -18,6 +20,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +36,7 @@ public class LockScreenActivity extends ActionBarActivity {
     ComponentName compName;
     TextView masterpass;
     Toolbar toolbar;
+    ImageView credits;
     SharedPreferences sharedPreferences;
     private int MY_PERMISSIONS_REQUEST_RECEIVE_SMS = 1;
 
@@ -40,8 +44,8 @@ public class LockScreenActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lock_screen);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
         //startService(new Intent(this,ServerLockService.class));
         deviceManger = (DevicePolicyManager)getSystemService(
                 Context.DEVICE_POLICY_SERVICE);
@@ -110,6 +114,16 @@ public class LockScreenActivity extends ActionBarActivity {
                     .show();
         }
 
+        credits = (ImageView) findViewById(R.id.credits);
+        credits.setColorFilter(Color.parseColor("#EEEEEE"));
+        credits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse("https://play.google.com/store/apps/developer?id=Flat+Earth+Studios&hl=en"));
+                startActivity(i);
+            }
+        });
     }
 
 

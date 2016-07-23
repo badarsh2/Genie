@@ -4,22 +4,22 @@
     android:orientation="vertical"
     tools:context=".Activities.LockScreenActivity">
 
-    <android.support.v7.widget.Toolbar
-        xmlns:local="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        local:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        local:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/switch1"
-            android:layout_gravity="right|center_vertical"
-            android:layout_marginRight="10dp"/>
+    <!--<android.support.v7.widget.Toolbar-->
+        <!--xmlns:local="http://schemas.android.com/apk/res-auto"-->
+        <!--android:id="@+id/toolbar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?attr/actionBarSize"-->
+        <!--android:background="?attr/colorPrimary"-->
+        <!--local:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"-->
+        <!--local:popupTheme="@style/ThemeOverlay.AppCompat.Light" >-->
+        <!--<Switch-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:id="@+id/switch1"-->
+            <!--android:layout_gravity="right|center_vertical"-->
+            <!--android:layout_marginRight="10dp"/>-->
 
-    </android.support.v7.widget.Toolbar>
+    <!--</android.support.v7.widget.Toolbar>-->
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -27,8 +27,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/colorPrimaryDark">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -37,9 +38,7 @@
                 android:fontFamily="sans-serif-condensed"
                 android:textSize="18sp"
                 android:id="@+id/textView"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:textColor="#FFFFFF" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -47,14 +46,14 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@color/colorPrimary">
+                android:background="#EEEEEE">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="CHANGE PASSWORDS"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/colorPrimary"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:id="@+id/textView5"
@@ -68,7 +67,7 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="5dp"
                     android:text="Enter Master Password (Default: 0000)"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/colorPrimary"
                     android:fontFamily="sans-serif-condensed"
                     android:id="@+id/textView2"
                     android:layout_alignParentTop="true"
@@ -81,7 +80,7 @@
                     <EditText
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/colorPrimary"
                         android:inputType="number"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -93,8 +92,24 @@
                         android:id="@+id/enterpwdpage"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:layout_marginRight="10dp"/>
+                        android:background="@color/colorPrimary"
+                        android:textColor="#EEEEEE"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"/>
                 </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="bottom">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:src="@drawable/credits"
+                    android:id="@+id/credits"
+                    android:layout_margin="10dp"/>
             </LinearLayout>
         </LinearLayout>
 

@@ -1,4 +1,4 @@
-package com.example.adarsh.lockscreen;
+package com.example.adarsh.lockscreen.Activities;
 
 import android.app.ActivityManager;
 import android.app.AlertDialog;
@@ -6,11 +6,8 @@ import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -18,9 +15,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class PasswordChange extends AppCompatActivity {
+import com.example.adarsh.lockscreen.Utilities.MyAdmin;
+import com.example.adarsh.lockscreen.R;
+
+public class PasswordChangeActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
     TextView masterpass, devicepass;
@@ -51,28 +50,15 @@ public class PasswordChange extends AppCompatActivity {
         findViewById(R.id.changedevice).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                popup_request_device();
+                popupRequestDevice();
             }
         });
         findViewById(R.id.changemaster).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                popup_request_master();
+                popupRequestMaster();
             }
         });
-
-        Intent i = getIntent();
-        if(i.getIntExtra("passchange", 0) == 1) {
-            new AlertDialog.Builder(PasswordChange.this)
-                    .setTitle("Password changed")
-                    .setMessage("A password PIN has been detected. Please change the password in the settings also.")
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // continue with delete
-                        }
-                    })
-                    .show();
-        }
 
     }
 
@@ -86,12 +72,12 @@ public class PasswordChange extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void popup_request_device() {
-        LayoutInflater layoutInflater = LayoutInflater.from(PasswordChange.this);
+    private void popupRequestDevice() {
+        LayoutInflater layoutInflater = LayoutInflater.from(PasswordChangeActivity.this);
 
-        View promptView = layoutInflater.inflate(R.layout.popup_layout, null);
+        View promptView = layoutInflater.inflate(R.layout.popup_layout_device, null);
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(PasswordChange.this);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(PasswordChangeActivity.this);
 
         // set prompts.xml to be the layout file of the alertdialog builder
         alertDialogBuilder.setView(promptView);
@@ -106,6 +92,7 @@ public class PasswordChange extends AppCompatActivity {
 
                         SharedPreferences.Editor editor = getSharedPreferences("PASS", 0).edit();
                         editor.putString("password", input.getText().toString());
+                        editor.putBoolean("Changed", true);
                         editor.commit();
 
                         editor = sharedPreferences.edit();
@@ -133,12 +120,12 @@ public class PasswordChange extends AppCompatActivity {
         alertD.show();
     }
 
-    private void popup_request_master() {
-        LayoutInflater layoutInflater = LayoutInflater.from(PasswordChange.this);
+    private void popupRequestMaster() {
+        LayoutInflater layoutInflater = LayoutInflater.from(PasswordChangeActivity.this);
 
         View promptView = layoutInflater.inflate(R.layout.popup_layout, null);
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(PasswordChange.this);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(PasswordChangeActivity.this);
 
         // set prompts.xml to be the layout file of the alertdialog builder
         alertDialogBuilder.setView(promptView);

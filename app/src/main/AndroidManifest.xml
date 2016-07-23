@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LockScreenActivity">
+        <activity android:name=".Activities.LockScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,36 +21,36 @@
         </activity>
 
         <receiver
-            android:name=".MyAdmin"
+            android:name=".Utilities.MyAdmin"
             android:permission="android.permission.BIND_DEVICE_ADMIN">
             <meta-data
                 android:name="android.app.device_admin"
                 android:resource="@layout/policies" />
 
             <intent-filter>
-                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED"></action>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED"/>
             </intent-filter>
         </receiver>
-        <receiver android:name=".ReceiveSMS">
+        <receiver android:name=".Utilities.ReceiveSMS">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".ReceiveSMS$switchButtonListenerzero" />
-        <receiver android:name=".ReceiveSMS$switchButtonListenerone" />
-        <receiver android:name=".ReceiveSMS$switchButtonListenertwo" />
-        <receiver android:name=".ReceiveSMS$switchButtonListenerthree" />
-        <receiver android:name=".ReceiveSMS$switchButtonListenerfour" />
-        <receiver android:name=".ReceiveSMS$switchButtonListenerfive" />
-        <receiver android:name=".ReceiveSMS$switchButtonListenersix" />
-        <receiver android:name=".ReceiveSMS$switchButtonListenerseven" />
-        <receiver android:name=".ReceiveSMS$switchButtonListenereight" />
-        <receiver android:name=".ReceiveSMS$switchButtonListenernine" />
-        <receiver android:name=".ReceiveSMS$switchButtonListenerbackspace" />
-        <receiver android:name=".ReceiveSMS$switchButtonListenersubmit" />
+        <receiver android:name=".Utilities.NotificationGenerator$SwitchButtonListenerZero" />
+        <receiver android:name=".Utilities.NotificationGenerator$SwitchButtonListenerOne" />
+        <receiver android:name=".Utilities.NotificationGenerator$SwitchButtonListenerTwo" />
+        <receiver android:name=".Utilities.NotificationGenerator$SwitchButtonListenerThree" />
+        <receiver android:name=".Utilities.NotificationGenerator$SwitchButtonListenerFour" />
+        <receiver android:name=".Utilities.NotificationGenerator$SwitchButtonListenerFive" />
+        <receiver android:name=".Utilities.NotificationGenerator$SwitchButtonListenerSix" />
+        <receiver android:name=".Utilities.NotificationGenerator$SwitchButtonListenerSeven" />
+        <receiver android:name=".Utilities.NotificationGenerator$SwitchButtonListenerEight" />
+        <receiver android:name=".Utilities.NotificationGenerator$SwitchButtonListenerNine" />
+        <receiver android:name=".Utilities.NotificationGenerator$SwitchButtonListenerBackspace" />
+        <receiver android:name=".Utilities.NotificationGenerator$SwitchButtonListenerSubmit" />
 
         <activity
-            android:name=".PasswordChange"
+            android:name=".Activities.PasswordChangeActivity"
             android:label="@string/title_activity_password_change"
             android:theme="@style/AppTheme">
         </activity>

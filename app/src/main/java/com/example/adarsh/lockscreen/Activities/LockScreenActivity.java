@@ -1,4 +1,4 @@
-package com.example.adarsh.lockscreen;
+package com.example.adarsh.lockscreen.Activities;
 
 import android.Manifest;
 import android.app.ActivityManager;
@@ -10,19 +10,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.adarsh.lockscreen.Utilities.MyAdmin;
+import com.example.adarsh.lockscreen.R;
 
 
 public class LockScreenActivity extends ActionBarActivity {
@@ -90,13 +90,25 @@ public class LockScreenActivity extends ActionBarActivity {
             @Override
             public void onClick(View view) {
                 if(masterpass.getText().toString().equals((sharedPreferences.getString("masterpass", "0000")))) {
-                    startActivity(new Intent(LockScreenActivity.this, PasswordChange.class));
+                    startActivity(new Intent(LockScreenActivity.this, PasswordChangeActivity.class));
                 }
                 else {
                     Toast.makeText(getApplicationContext(), "Wrong password", Toast.LENGTH_LONG).show();
                 }
             }
         });
+        Intent i = getIntent();
+        if(i.getIntExtra("passchange", 0) == 1) {
+            new AlertDialog.Builder(LockScreenActivity.this)
+                    .setTitle("Password changed")
+                    .setMessage("A password change has been detected. Please update the password in Genie also.")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                        }
+                    })
+                    .show();
+        }
 
     }
 
